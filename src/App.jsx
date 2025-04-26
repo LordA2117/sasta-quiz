@@ -2,11 +2,13 @@ import './App.css'
 import QuizCard from './components/QuizCard';
 import CorrectCard from './components/CorrectCard';
 import WrongCard from './components/WrongCard';
+import LoginCard from './components/LoginCard';
 
 function App() {
 
   return (
-    <div>
+    <div className='App'>
+			<LoginCard />
     </div>
   )
 }
