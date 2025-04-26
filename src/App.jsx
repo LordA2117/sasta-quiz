@@ -1,16 +1,17 @@
 import './App.css'
 import QuizCard from './components/QuizCard';
+import CorrectCard from './components/CorrectCard';
+import WrongCard from './components/WrongCard';
 
 function App() {
 
   return (
     <div>
-			<QuizCard question_number = {1} question_text={"How many cells are there in a human body? "} question_category={"Entertainment: Anime & Manga"} />	
     </div>
   )
 }
 
 export default App;
 
-//TODO: We'll source 10 mcq's using this url https://opentdb.com/api.php?amount=10&type=multiple
-//This will give us 10 mcq to work with and we can render question like that.
+// Used lottiefiles for animations, very cool shi
+// TODO: Build a simple introduction card and a simple name and scoring system. Style mouse pointer and add a circular progress bar around it.
