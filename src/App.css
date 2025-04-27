@@ -5,6 +5,7 @@
   text-align: center;
 }
 
+
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -39,4 +40,15 @@
 
 .read-the-docs {
   color: #888;
+}
+
+
+#tsparticles {
+	z-index: 0;
+	position: fixed;
+}
+
+.content {
+	position: relative;
+	z-index: 1;
 }
