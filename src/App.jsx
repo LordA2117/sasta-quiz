@@ -4,6 +4,7 @@ import QuizCard from './components/QuizCard';
 import CorrectCard from './components/CorrectCard';
 import WrongCard from './components/WrongCard';
 import LoginCard from './components/LoginCard';
+import ScoreCard from './components/ScoreCard';
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import particlesConfig from './components/particlesConfig';
@@ -26,7 +27,7 @@ function App() {
 		<QuizCard question_number={questionNumber + 1} set_index={setIndex} user_score={userScore} set_user_score={setUserScore} total_score={totalScore} set_total_score={setTotalScore} username={username}/>, 
 		<CorrectCard set_question_number={setQuestionNumber} set_index={setIndex} question_number={questionNumber}/>, 
 		<WrongCard set_question_number={setQuestionNumber} set_index={setIndex} question_number={questionNumber}/>,
-		<div className='scorecard'>Score</div>
+		<ScoreCard userscore={userScore} totalscore={totalScore} />
 	];
 	
 	if (!username) {
