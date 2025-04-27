@@ -43,7 +43,7 @@ function QuizCard(props) {
 	return (
 		<div className='question-card'>
 			<DataDisplay username={props.username} totalscore={props.total_score} userscore={props.user_score} />
-			<p className='question-number jetbrains-mono-light-300'> [{'>'}_] Question Number {props.question_number} </p>
+			<p className='question-number jetbrains-mono-light-300'> [{'>'}_] Question Number {props.question_number}/10 </p>
 			<p className='question-category jetbrains-mono-light-300'> [#] {htmlDecode(question["category"])} </p>
 			<p className='question-difficulty jetbrains-mono-light-300'> [~] {capitalize(question["difficulty"])} </p>
 			<h3 className='question-text jetbrains-mono-medium-500'>{htmlDecode(ques_string)}</h3>
