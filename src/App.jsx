@@ -8,18 +8,33 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import particlesConfig from './components/particlesConfig';
 
+function getRandomUsername() {
+	const usernames = ['TRON', 'CLU', 'Rinzler', 'Kevin Flynn', 'Sam', 'Quorra', 'Alan Bradley'];
+	const randomIndex = Math.floor(Math.random() * usernames.length);
+	return usernames[randomIndex];
+}
+
 function App() {
 	const [userScore, setUserScore] = useState(0);
 	const [totalScore, setTotalScore] = useState(0); // Total score of all the questions so far
-	const [index, setIndex] = useState(0); // Question number
-	const [answerState, setAnswerState] = useState(false); // Answer is wrong or right (false or true)
+	const [questionNumber, setQuestionNumber] = useState(0); // Question number
 	const [init, setInit] = useState(false);
+	const [username, setUsername] = useState('CLU');
+	const [index, setIndex] = useState(0);
+	const components = [
+		<LoginCard set_username={setUsername} username={username} totalscore={totalScore} userscore={userScore} set_index={setIndex}/>,
+		<QuizCard question_number={questionNumber + 1} set_index={setIndex} user_score={userScore} set_user_score={setUserScore} total_score={totalScore} set_total_score={setTotalScore} username={username}/>, 
+		<CorrectCard set_question_number={setQuestionNumber} set_index={setIndex} question_number={questionNumber}/>, 
+		<WrongCard set_question_number={setQuestionNumber} set_index={setIndex} question_number={questionNumber}/>,
+		<div className='scorecard'>Score</div>
+	];
+	
+	if (!username) {
+		setUsername(getRandomUsername());
+	}
 
 	useEffect(() => {
     initParticlesEngine(async (engine) => {
-      // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
-      // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-      // starting from v2 you can add only the features you need reducing the bundle size
       await loadSlim(engine);
     }).then(() => {
       setInit(true);
@@ -33,6 +48,14 @@ function App() {
 	const options = useMemo(
 		() => (particlesConfig));	
 
+	let component = components[index];
+	
+	if (questionNumber >= 10) {
+		component = components[4];
+	} else {
+		component = components[index];
+	}
+
   return (
     <div className='App'>
 			<Particles
@@ -41,7 +64,7 @@ function App() {
         options={options}
       />
 			<section className='content'>
-				<LoginCard />
+				{component}
 			</section>
     </div>
   )

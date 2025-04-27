@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import './QuizCard.css';
+import DataDisplay from './DataDisplay';
 
 function htmlDecode(input) {
 	var doc = new DOMParser().parseFromString(input, "text/html");
@@ -41,6 +42,7 @@ function QuizCard(props) {
 
 	return (
 		<div className='question-card'>
+			<DataDisplay username={props.username} totalscore={props.total_score} userscore={props.user_score} />
 			<p className='question-number jetbrains-mono-light-300'> [{'>'}_] Question Number {props.question_number} </p>
 			<p className='question-category jetbrains-mono-light-300'> [#] {htmlDecode(question["category"])} </p>
 			<p className='question-difficulty jetbrains-mono-light-300'> [~] {capitalize(question["difficulty"])} </p>
@@ -86,6 +88,34 @@ function QuizCard(props) {
 						</tr>
 					</tbody>
 				</table>
+				<button className='submit-button jetbrains-mono-regular-400' onClick={
+					() => {
+						const user_answer = document.querySelector('input[name="option"]:checked').value;
+						console.log(user_answer);
+						if (user_answer == question['correct_answer']) {
+							props.set_index(2);
+							if (question["difficulty"] == 'easy') {
+								props.set_user_score(props.user_score + 100);
+								props.set_total_score(props.total_score + 100);
+							} else if(question["difficulty"] == 'medium') {
+								props.set_user_score(props.user_score + 250);
+								props.set_total_score(props.total_score + 250);
+							} else {
+								props.set_user_score(props.user_score + 500);
+								props.set_total_score(props.total_score + 500);
+							}
+						} else {
+							props.set_index(3);
+							if (question["difficulty"] == 'easy') {
+								props.set_total_score(props.total_score + 100);
+							} else if(question["difficulty"] == 'medium') {
+								props.set_total_score(props.total_score + 250);
+							} else {
+								props.set_total_score(props.total_score + 500);
+							}
+						}
+					}
+				}>Go -{'>'}</button>
 			</div>
 		</div>
 	);
@@ -93,3 +123,5 @@ function QuizCard(props) {
 
 export default QuizCard;
 
+// The kindness of StackOverflow is insane tbh
+// https://stackoverflow.com/questions/15839169/how-to-get-the-value-of-a-selected-radio-button

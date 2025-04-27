@@ -21,3 +21,16 @@
 	color: var(--red);
 	font-size: 30px;
 }
+
+.submit-button {
+	background-color: var(--green);
+	color: black;
+	transition: 0.5s;
+}
+
+.submit-button:hover {
+	background-color: transparent;
+	color: var(--green);
+	border: 1px solid var(--green);
+	border-radius: 10px;
+}
