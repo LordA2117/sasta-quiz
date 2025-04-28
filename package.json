@@ -1,5 +1,6 @@
 {
   "name": "sasta-quiz",
+  "homepage": "https://LordA2117.github.io/sasta-quiz",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,12 +8,15 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@lottiefiles/dotlottie-react": "^0.13.4",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.8.1",
+    "gh-pages": "^6.3.0",
     "react": "^19.0.0",
     "react-circular-progressbar": "^2.2.0",
     "react-dom": "^19.0.0"
